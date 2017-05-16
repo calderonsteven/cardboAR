@@ -11,12 +11,12 @@ PluginImporter:
     Android:
       enabled: 0
       settings:
-        CPU: AnyCPU
+        CPU: x86
     Any:
       enabled: 1
       settings: {}
     Editor:
-      enabled: 0
+      enabled: 1
       settings:
         CPU: x86_64
         DefaultValueInitialized: true
