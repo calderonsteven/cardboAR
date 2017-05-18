@@ -1,4 +1,0 @@
-sceneSetups:
-- path: Assets/SamplesScenes/Vuforia-3-VirtualButtons.unity
-  isLoaded: 1
-  isActive: 1
