@@ -21,12 +21,12 @@ public class VirtualButtonEventHandler : MonoBehaviour,
     /// </summary>
     public Material[] m_TeapotMaterials;
     public Material m_VirtualButtonMaterial;
+    public Transform carModel;
     #endregion // PUBLIC_MEMBERS
 
 
     #region PRIVATE_MEMBERS
     private GameObject mTeapot;
-    private List<Material> mActiveMaterials;
     #endregion // PRIVATE_MEMBERS
 
 
@@ -46,10 +46,9 @@ public class VirtualButtonEventHandler : MonoBehaviour,
         }
 
         // Get handle to the teapot object
-        mTeapot = transform.FindChild("VirtualButtons_teapot").gameObject;
-
-        // The list of active materials
-        mActiveMaterials = new List<Material>();
+        // mTeapot = transform.FindChild("VirtualButtons_teapot").gameObject;
+        mTeapot = transform.FindChild("honda-type-r").gameObject;
+        // mTeapot = carModel;
     }
 
     #endregion // MONOBEHAVIOUR_METHODS
@@ -68,30 +67,36 @@ public class VirtualButtonEventHandler : MonoBehaviour,
             return;
         }
 
+        int indexMaterial = 0;
+
         // Add the material corresponding to this virtual button
         // to the active material list:
         switch (vb.VirtualButtonName)
         {
         case "red":
-            mActiveMaterials.Add(m_TeapotMaterials[0]);
+            indexMaterial = 0;
             break;
 
         case "blue":
-            mActiveMaterials.Add(m_TeapotMaterials[1]);
+            indexMaterial = 1;
             break;
 
         case "yellow":
-            mActiveMaterials.Add(m_TeapotMaterials[2]);
+            indexMaterial = 2;
             break;
 
         case "green":
-            mActiveMaterials.Add(m_TeapotMaterials[3]);
+            indexMaterial = 3;
             break;
         }
 
         // Apply the new material:
-        if (mActiveMaterials.Count > 0)
-            mTeapot.GetComponent<Renderer>().material = mActiveMaterials[mActiveMaterials.Count - 1];
+        foreach (Transform child in carModel){
+            if (child.CompareTag("car-color-mat")) {
+                // Debug.Log("CHILD: " + child.name);
+                child.GetComponent<Renderer>().material = m_TeapotMaterials[indexMaterial];
+            }
+        }
     }
 
     /// <summary>
@@ -99,7 +104,7 @@ public class VirtualButtonEventHandler : MonoBehaviour,
     /// </summary>
     public void OnButtonReleased(VirtualButtonAbstractBehaviour vb)
     {
-        if (!IsValid())
+        /*if (!IsValid())
         {
             return;
         }
@@ -129,7 +134,7 @@ public class VirtualButtonEventHandler : MonoBehaviour,
         if (mActiveMaterials.Count > 0)
             mTeapot.GetComponent<Renderer>().material = mActiveMaterials[mActiveMaterials.Count - 1];
         else
-            mTeapot.GetComponent<Renderer>().material = m_TeapotMaterials[4];
+            mTeapot.GetComponent<Renderer>().material = m_TeapotMaterials[4];*/
     }
     #endregion //PUBLIC_METHODS
 
