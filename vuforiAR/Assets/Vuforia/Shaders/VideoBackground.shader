@@ -6,7 +6,8 @@ Shader "Custom/VideoBackground" {
         _MainTex ("Base (RGB)", 2D) = "white" {}
     }
     SubShader {
-        Tags {"Queue"="geometry-11" "RenderType"="opaque" }
+        // Tags {"Queue"="geometry-11" "RenderType"="opaque" }
+        Tags {"Queue"="Geometry" "RenderType"="opaque" }
         Pass {
             ZWrite Off
             Cull Off
