@@ -15,5 +15,7 @@ target: https://github.com/artoolkit/artoolkit5/blob/master/doc/patterns/Hiro%20
 ![](images/vuforia.jpg)
 vuforia + unity
 
+apk: https://developer.cloud.unity3d.com/share/WyMKTJynSf/
+
 target: https://github.com/calderonsteven/cardboAR/blob/master/vuforiAR/Assets/Editor/Vuforia/ForPrint/target_wood_A4.pdf
 
