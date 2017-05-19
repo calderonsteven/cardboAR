@@ -46,7 +46,6 @@ public class VirtualButtonEventHandler : MonoBehaviour,
         }
 
         // Get handle to the teapot object
-        // mTeapot = transform.FindChild("VirtualButtons_teapot").gameObject;
         mTeapot = transform.FindChild("honda-type-r").gameObject;
         // mTeapot = carModel;
     }
@@ -67,7 +66,7 @@ public class VirtualButtonEventHandler : MonoBehaviour,
             return;
         }
 
-        int indexMaterial = 0;
+        int indexMaterial = -1;
 
         // Add the material corresponding to this virtual button
         // to the active material list:
@@ -90,13 +89,22 @@ public class VirtualButtonEventHandler : MonoBehaviour,
             break;
         }
 
-        // Apply the new material:
-        foreach (Transform child in carModel){
-            if (child.CompareTag("car-color-mat")) {
-                // Debug.Log("CHILD: " + child.name);
-                child.GetComponent<Renderer>().material = m_TeapotMaterials[indexMaterial];
+        if(indexMaterial != -1){
+            // Apply the new material:
+            foreach (Transform child in carModel){
+                if (child.CompareTag("car-color-mat")) {
+                    // Debug.Log("CHILD: " + child.name);
+                    child.GetComponent<Renderer>().material = m_TeapotMaterials[indexMaterial];
+                }
             }
         }
+
+        if(vb.VirtualButtonName == "leftButton" || vb.VirtualButtonName == "rightButton"){
+            var audiR8 = transform.FindChild("audi-r8-red").gameObject;
+            mTeapot.SetActive(!mTeapot.activeInHierarchy);
+            audiR8.SetActive(!audiR8.activeInHierarchy);
+        }
+        
     }
 
     /// <summary>
@@ -104,37 +112,7 @@ public class VirtualButtonEventHandler : MonoBehaviour,
     /// </summary>
     public void OnButtonReleased(VirtualButtonAbstractBehaviour vb)
     {
-        /*if (!IsValid())
-        {
-            return;
-        }
 
-        // Remove the material corresponding to this virtual button
-        // from the active material list:
-        switch (vb.VirtualButtonName)
-        {
-        case "red":
-            mActiveMaterials.Remove(m_TeapotMaterials[0]);
-            break;
-
-        case "blue":
-            mActiveMaterials.Remove(m_TeapotMaterials[1]);
-            break;
-
-        case "yellow":
-            mActiveMaterials.Remove(m_TeapotMaterials[2]);
-            break;
-
-        case "green":
-            mActiveMaterials.Remove(m_TeapotMaterials[3]);
-            break;
-        }
-
-        // Apply the next active material, or apply the default material:
-        if (mActiveMaterials.Count > 0)
-            mTeapot.GetComponent<Renderer>().material = mActiveMaterials[mActiveMaterials.Count - 1];
-        else
-            mTeapot.GetComponent<Renderer>().material = m_TeapotMaterials[4];*/
     }
     #endregion //PUBLIC_METHODS
 
